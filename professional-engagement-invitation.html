@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pooja & Swapnil - Engagement Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .invitation-card {
+            max-width: 420px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            position: relative;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.6;
+        }
+
+        .engagement-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1em;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .couple-section {
+            padding: 50px 30px;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .couple-photos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 30px;
+        }
+
+        .photo-frame {
+            position: relative;
+            width: 90px;
+            height: 90px;
+        }
+
+        .couple-photo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #f8f9fa;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .couple-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .divider-heart {
+            font-size: 2.5em;
+            color: #e74c3c;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .couple-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin: 25px 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .event-details {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .event-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .date-time-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+        }
+
+        .date-time-card .date {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .date-time-card .time {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 8px;
+        }
+
+        .date-time-card .venue {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .countdown-section {
+            background: #2c3e50;
+            color: white;
+            padding: 35px 30px;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            color: #ecf0f1;
+        }
+
+        .countdown-display {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .time-block {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            padding: 20px 10px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .time-number {
+            font-size: 1.8em;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .time-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .message-section {
+            padding: 40px 30px;
+            background: white;
+            text-align: center;
+        }
+
+        .invitation-message {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #34495e;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .gallery-section {
+            background: #f8f9fa;
+            padding: 40px 30px;
+        }
+
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-photo {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-photo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .rsvp-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .rsvp-button {
+            background: #ffffff;
+            color: #667eea;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rsvp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .contact-info {
+            margin-top: 25px;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95em;
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+        }
+
+        .footer-message {
+            margin-top: 20px;
+            font-style: italic;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-card">
+        <div class="header-section">
+            <h1 class="engagement-title">ENGAGEMENT CEREMONY</h1>
+            <p class="subtitle">You are cordially invited</p>
+        </div>
+
+        <div class="couple-section">
+            <div class="couple-photos">
+                <div class="photo-frame">
+                    <img src="bride.jpg" alt="Pooja" class="couple-photo">
+                </div>
+                <div class="divider-heart">♥</div>
+                <div class="photo-frame">
+                    <img src="groom.jpg" alt="Swapnil" class="couple-photo">
+                </div>
+            </div>
+            <h2 class="couple-names">Pooja & Swapnil</h2>
+            <p class="tagline">Two hearts, one beautiful journey</p>
+        </div>
+
+        <div class="event-details">
+            <h3 class="event-title">Join Us For Our Special Day</h3>
+            <div class="date-time-card">
+                <div class="date">November 15th, 2025</div>
+                <div class="time">4:00 PM onwards</div>
+                <div class="venue">📍 Venue Address Here</div>
+            </div>
+        </div>
+
+        <div class="countdown-section">
+            <h3 class="countdown-title">Countdown to Our Engagement</h3>
+            <div class="countdown-display" id="countdown">
+                <div class="time-block">
+                    <span class="time-number" id="days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-number" id="hours">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-number" id="minutes">00</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-number" id="seconds">00</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="message-section">
+            <p class="invitation-message">
+                We are delighted to invite you to witness and celebrate our engagement ceremony. Your presence will add joy and meaning to this milestone in our lives. Join us as we take this beautiful step towards our forever together.
+            </p>
+        </div>
+
+        <div class="gallery-section">
+            <h3 class="gallery-title">Our Journey</h3>
+            <div class="photo-grid">
+                <img src="couplePicture.jpg" alt="Pooja & Swapnil" class="gallery-photo">
+                <img src="gallery-1.jpg" alt="Memory" class="gallery-photo">
+                <img src="gallery-2.jpg" alt="Memory" class="gallery-photo">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; border-radius: 12px; color: white; font-weight: 300; text-align: center; padding: 20px;">
+                    More beautiful moments ahead
+                </div>
+            </div>
+        </div>
+
+        <div class="rsvp-section">
+            <button class="rsvp-button" onclick="sendRSVP()">Confirm Attendance</button>
+            <div class="contact-info">
+                <p>Please RSVP by November 10th, 2025</p>
+                <p>📞 +91 XXXXX XXXXX</p>
+                <p>✉️ contact@example.com</p>
+            </div>
+            <p class="footer-message">
+                "Love is the bridge between two hearts"
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('November 15, 2025 16:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            } else {
+                document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5em; color: #ecf0f1;">🎉 Today is the Day! 🎉</div>';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // RSVP Function
+        function sendRSVP() {
+            const message = "Hello! I'm delighted to confirm my attendance at Pooja & Swapnil's engagement ceremony on November 15th, 2025 at 4:00 PM. Looking forward to celebrating with you!";
+            const phoneNumber = "YOUR_PHONE_NUMBER"; // Replace with actual number
+            
+            if (confirm("Send RSVP confirmation?")) {
+                // Try WhatsApp
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>

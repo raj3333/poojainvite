@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pooja & Swapnil - Engagement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .pages-container {
+            display: flex;
+            width: 200%;
+            height: 100vh;
+            transition: transform 0.5s ease;
+        }
+
+        .page {
+            width: 50%;
+            height: 100vh;
+            flex-shrink: 0;
+        }
+
+        .invitation-container {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('couplePicture.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .invitation-content {
+            max-width: 350px;
+            width: 100%;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .engagement-title {
+            font-size: 1em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .couple-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2em;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.1;
+        }
+
+        .event-date {
+            font-size: 1.1em;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+
+        .countdown-timer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .timer-item {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 8px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .timer-number {
+            font-size: 1.4em;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .timer-label {
+            font-size: 0.7em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-details {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            margin: 25px 0;
+        }
+
+        .event-info {
+            font-size: 0.95em;
+            margin: 8px 0;
+            font-weight: 300;
+        }
+
+        .rsvp-button {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .rsvp-button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .contact-info {
+            margin-top: 15px;
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        .swipe-indicator {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .map-page {
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            color: #333;
+            position: relative;
+        }
+
+        .map-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .map-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            color: #8B4513;
+            margin-bottom: 10px;
+        }
+
+        .map-subtitle {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .map-container {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .venue-details {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .venue-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #8B4513;
+            margin-bottom: 10px;
+        }
+
+        .venue-address {
+            font-size: 0.9em;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .directions-btn {
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+            z-index: 10;
+        }
+
+        .ornament {
+            font-size: 1.5em;
+            margin: 15px 0;
+            opacity: 0.8;
+        }
+
+        @media (max-height: 700px) {
+            .couple-names {
+                font-size: 2.8em;
+                margin: 15px 0;
+            }
+            
+            .countdown-timer {
+                margin: 20px 0;
+            }
+            
+            .timer-item {
+                padding: 10px 6px;
+            }
+            
+            .event-details {
+                padding: 15px;
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .couple-names {
+                font-size: 2.4em;
+                margin: 10px 0;
+            }
+            
+            .countdown-timer {
+                margin: 15px 0;
+            }
+            
+            .event-details {
+                padding: 12px;
+                margin: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pages-container" id="pagesContainer">
+        <!-- Page 1: Invitation -->
+        <div class="page invitation-container">
+            <div class="invitation-content">
+                <p class="engagement-title">We're Getting Engaged</p>
+                
+                <h1 class="couple-names">Pooja & Akash</h1>
+                
+                <p class="event-date">November 15, 2025 • 4:00 PM</p>
+                
+                <div class="ornament">❦</div>
+                
+                <div class="countdown-timer" id="countdown">
+                    <div class="timer-item">
+                        <span class="timer-number" id="days">00</span>
+                        <span class="timer-label">Days</span>
+                    </div>
+                    <div class="timer-item">
+                        <span class="timer-number" id="hours">00</span>
+                        <span class="timer-label">Hours</span>
+                    </div>
+                    <div class="timer-item">
+                        <span class="timer-number" id="minutes">00</span>
+                        <span class="timer-label">Minutes</span>
+                    </div>
+                    <div class="timer-item">
+                        <span class="timer-number" id="seconds">00</span>
+                        <span class="timer-label">Seconds</span>
+                    </div>
+                </div>
+                
+                <div class="event-details">
+                    <div class="event-info">📍 3ʳᵈ floor, High Street Mall, Junction, near Star Cinema, Samata Nagar, Kapurbawdi, Thane West, Thane, Maharashtra 400601</div>
+                    <div class="event-info">👗 Dress Code: Formal/Traditional</div>
+                    <div class="event-info">🎉 Join us for this special moment</div>
+                </div>
+                
+                <button class="rsvp-button" onclick="sendRSVP()">RSVP Now</button>
+                
+                <div class="contact-info">
+                    <p>Please confirm by Nov 10th</p>
+                    <p>📞 +91 XXXXX XXXXX</p>
+                </div>
+            </div>
+            <div class="swipe-indicator" onclick="showMap()">
+                Swipe for Map →
+            </div>
+        </div>
+
+        <!-- Page 2: Map -->
+        <div class="page map-page">
+            <button class="back-btn" onclick="showInvitation()">← Back</button>
+            
+            <div class="map-header">
+                <h2 class="map-title">Find Us Here</h2>
+                <p class="map-subtitle">High Street Mall, Thane</p>
+            </div>
+            
+            <div class="map-container">
+                <iframe class="map-iframe" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.8!2d72.9629!3d19.2183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b8e5e5e5e5e5%3A0x5e5e5e5e5e5e5e5e!2sHigh%20Street%20Mall%2C%20Thane!5e0!3m2!1sen!2sin!4v1234567890"
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+            
+            <div class="venue-details">
+                <div class="venue-name">High Street Mall</div>
+                <div class="venue-address">3ʳᵈ floor, High Street Mall, Junction, near Star Cinema, Samata Nagar, Kapurbawdi, Thane West, Thane, Maharashtra 400601</div>
+                <button class="directions-btn" onclick="openDirections()">Get Directions</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('November 15, 2025 16:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            } else {
+                document.getElementById('countdown').innerHTML = '<div style="grid-column: 1/-1; font-size: 1.2em;">🎉 Today is the Day! 🎉</div>';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Page Navigation
+        function showMap() {
+            document.getElementById('pagesContainer').style.transform = 'translateX(-50%)';
+        }
+
+        function showInvitation() {
+            document.getElementById('pagesContainer').style.transform = 'translateX(0%)';
+        }
+
+        // Touch/Swipe Support
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const diffX = startX - currentX;
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    showMap();
+                } else {
+                    showInvitation();
+                }
+            }
+        });
+
+        // Directions Function
+        function openDirections() {
+            const address = "High Street Mall, Junction, Thane West, Thane, Maharashtra 400601";
+            const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+            window.open(googleMapsUrl, '_blank');
+        }
+
+        // RSVP Function
+        function sendRSVP() {
+            const message = "Hello! I'm delighted to confirm my attendance at Pooja & Akash's engagement ceremony on November 15th, 2025 at 4:00 PM. Looking forward to celebrating with you!";
+            const phoneNumber = "YOUR_PHONE_NUMBER";
+            
+            if (confirm("Send RSVP confirmation?")) {
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
