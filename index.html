@@ -158,6 +158,7 @@
             animation: fadeInUp 1.5s ease-out;
             position: relative;
             z-index: 2;
+            padding: 10px 0;
         }
 
         @keyframes fadeInUp {
@@ -508,9 +509,31 @@
             font-family: 'Dancing Script', cursive;
             font-size: 3.5em;
             margin: 20px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 
+                2px 2px 4px rgba(0,0,0,0.3),
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(255, 255, 255, 0.6);
             line-height: 1.1;
             font-weight: 600;
+            animation: nameGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes nameGlow {
+            0%, 100% {
+                text-shadow: 
+                    2px 2px 4px rgba(0,0,0,0.3),
+                    0 0 20px rgba(255, 255, 255, 0.8),
+                    0 0 40px rgba(255, 255, 255, 0.6);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 
+                    2px 2px 4px rgba(0,0,0,0.3),
+                    0 0 30px rgba(255, 255, 255, 1),
+                    0 0 60px rgba(255, 255, 255, 0.8),
+                    0 0 80px rgba(255, 255, 255, 0.4);
+                transform: scale(1.02);
+            }
         }
 
         .tagline {
@@ -929,7 +952,40 @@
             }
         }
 
+        @keyframes devotionalGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 140, 0, 0.6));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1)) drop-shadow(0 0 50px rgba(255, 140, 0, 0.9));
+                transform: scale(1.1);
+            }
+        }
+
+        .ganesh-image {
+            animation: devotionalGlow 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .invitation-content {
+                padding: 5px 0;
+            }
+            
+            .couple-photos {
+                margin-bottom: 15px;
+            }
+            
+            .engagement-title {
+                margin-bottom: 10px;
+            }
+        }
+
         @media (max-height: 700px) {
+            .invitation-content {
+                padding: 0;
+            }
+            
             .couple-names {
                 font-size: 3em;
                 margin: 15px 0;
@@ -950,6 +1006,10 @@
         }
 
         @media (max-height: 600px) {
+            .invitation-content {
+                padding: 0;
+            }
+            
             .couple-names {
                 font-size: 2.6em;
                 margin: 10px 0;
@@ -992,7 +1052,7 @@
                 
                 <p class="event-date">November 15, 2025 • 4:00 PM</p>
                 
-                <div class="ornament">✨ ♡ ✨</div>
+                <div class="ornament"><img src="lordGanesh.png" alt="Lord Ganesh" class="ganesh-image" style="height: 3.5em; vertical-align: middle;"></div>
                 
                 <div class="countdown-timer" id="countdown">
                     <div class="timer-item">
