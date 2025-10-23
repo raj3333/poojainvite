@@ -777,7 +777,7 @@
         }
 
         .map-container {
-            flex: 1;
+            height: 35%;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
@@ -856,9 +856,9 @@
             -webkit-backdrop-filter: blur(20px);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 0.9em;
+            padding: 12px;
+            border-radius: 50%;
+            font-size: 1.2em;
             font-weight: 600;
             cursor: pointer;
             box-shadow: 
@@ -866,6 +866,11 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
             z-index: 10;
             transition: transform 0.3s ease;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .back-btn:hover {
@@ -1085,11 +1090,10 @@
 
         <!-- Page 2: Map -->
         <div class="page map-page">
-            <button class="back-btn" onclick="showInvitation()">← Back</button>
+            <button class="back-btn" onclick="showInvitation()">←</button>
             
             <div class="map-header">
                 <h2 class="map-title">Find Us Here</h2>
-                <p class="map-subtitle">Heaven Banquet, Thane</p>
             </div>
             
             <div class="map-container">
@@ -1244,19 +1248,19 @@
         }
 
         // Create floating roses periodically
-        setInterval(createFloatingHeart, 6000);
+        setInterval(createFloatingHeart, 3000);
 
         // Create floating sacred symbols periodically
-        setInterval(createFloatingSymbol, 8000);
+        setInterval(createFloatingSymbol, 4000);
 
         // Initial roses
-        for(let i = 0; i < 2; i++) {
-            setTimeout(createFloatingHeart, i * 1200);
+        for(let i = 0; i < 3; i++) {
+            setTimeout(createFloatingHeart, i * 800);
         }
 
         // Initial sacred symbols
-        for(let i = 0; i < 2; i++) {
-            setTimeout(createFloatingSymbol, i * 1500);
+        for(let i = 0; i < 3; i++) {
+            setTimeout(createFloatingSymbol, i * 1000);
         }
     </script>
 </body>
