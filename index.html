@@ -881,7 +881,7 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
-        .floating-hearts {
+        .floating-hearts, .floating-symbols {
             position: absolute;
             top: 0;
             left: 0;
@@ -900,16 +900,6 @@
             text-shadow: 0 0 10px rgba(220, 20, 60, 0.4);
         }
 
-        .floating-symbols {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
         .sacred-symbol {
             position: absolute;
             font-size: 28px;
@@ -918,21 +908,21 @@
         }
 
         .om-symbol {
-            color: rgba(255, 215, 0, 1);
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.8));
-            text-shadow: 0 0 25px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 215, 0, 0.6);
+            color: #ffd700;
+            filter: drop-shadow(0 0 20px #ffd700) drop-shadow(0 0 40px rgba(255, 215, 0, 0.8));
+            text-shadow: 0 0 25px #ffd700, 0 0 50px rgba(255, 215, 0, 0.6);
         }
 
         .swastika-symbol {
-            color: rgba(255, 140, 0, 1);
-            filter: drop-shadow(0 0 20px rgba(255, 140, 0, 1)) drop-shadow(0 0 40px rgba(255, 140, 0, 0.8));
-            text-shadow: 0 0 25px rgba(255, 140, 0, 1), 0 0 50px rgba(255, 140, 0, 0.6);
+            color: #ff8c00;
+            filter: drop-shadow(0 0 20px #ff8c00) drop-shadow(0 0 40px rgba(255, 140, 0, 0.8));
+            text-shadow: 0 0 25px #ff8c00, 0 0 50px rgba(255, 140, 0, 0.6);
         }
 
         .ganesh-mantra {
-            color: rgba(255, 140, 0, 1);
-            filter: drop-shadow(0 0 25px rgba(255, 140, 0, 1)) drop-shadow(0 0 50px rgba(255, 140, 0, 0.8));
-            text-shadow: 0 0 30px rgba(255, 140, 0, 1), 0 0 60px rgba(255, 140, 0, 0.7);
+            color: #ff8c00;
+            filter: drop-shadow(0 0 25px #ff8c00) drop-shadow(0 0 50px rgba(255, 140, 0, 0.8));
+            text-shadow: 0 0 30px #ff8c00, 0 0 60px rgba(255, 140, 0, 0.7);
             font-size: 16px;
             font-weight: 600;
         }
@@ -975,61 +965,23 @@
         }
 
         @media (max-width: 768px) {
-            .invitation-content {
-                padding: 5px 0;
-            }
-            
-            .couple-photos {
-                margin-bottom: 15px;
-            }
-            
-            .engagement-title {
-                margin-bottom: 10px;
-            }
+            .invitation-content { padding: 5px 0; }
+            .couple-photos { margin-bottom: 15px; }
+            .engagement-title { margin-bottom: 10px; }
         }
 
         @media (max-height: 700px) {
-            .invitation-content {
-                padding: 0;
-            }
-            
-            .couple-names {
-                font-size: 3em;
-                margin: 15px 0;
-            }
-            
-            .countdown-timer {
-                margin: 20px 0;
-            }
-            
-            .timer-item {
-                padding: 12px 6px;
-            }
-            
-            .event-details {
-                padding: 15px;
-                margin: 20px 0;
-            }
+            .invitation-content { padding: 0; }
+            .couple-names { font-size: 3em; margin: 15px 0; }
+            .countdown-timer { margin: 20px 0; }
+            .timer-item { padding: 12px 6px; }
+            .event-details { padding: 15px; margin: 20px 0; }
         }
 
         @media (max-height: 600px) {
-            .invitation-content {
-                padding: 0;
-            }
-            
-            .couple-names {
-                font-size: 2.6em;
-                margin: 10px 0;
-            }
-            
-            .countdown-timer {
-                margin: 15px 0;
-            }
-            
-            .event-details {
-                padding: 12px;
-                margin: 15px 0;
-            }
+            .couple-names { font-size: 2.6em; margin: 10px 0; }
+            .countdown-timer { margin: 15px 0; }
+            .event-details { padding: 12px; margin: 15px 0; }
         }
     </style>
 </head>
@@ -1129,64 +1081,49 @@
 
     <script>
         // Countdown Timer
-        function updateCountdown() {
-            const targetDate = new Date('November 15, 2025 16:00:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = targetDate - now;
-
+        const updateCountdown = () => {
+            const timeLeft = new Date('November 15, 2025 16:00:00') - new Date();
+            
             if (timeLeft > 0) {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                const units = [86400000, 3600000, 60000, 1000];
+                const ids = ['days', 'hours', 'minutes', 'seconds'];
+                
+                units.forEach((unit, i) => {
+                    const value = Math.floor((timeLeft % (units[i-1] || Infinity)) / unit);
+                    document.getElementById(ids[i]).textContent = value.toString().padStart(2, '0');
+                });
             } else {
                 document.getElementById('countdown').innerHTML = '<div style="grid-column: 1/-1; font-size: 1.2em;">🎉 Today is the Day! 🎉</div>';
             }
-        }
+        };
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
         // Page Navigation
-        function showMap() {
-            document.getElementById('pagesContainer').style.transform = 'translateX(-50%)';
-        }
-
-        function showInvitation() {
-            document.getElementById('pagesContainer').style.transform = 'translateX(0%)';
-        }
+        const showMap = () => document.getElementById('pagesContainer').style.transform = 'translateX(-50%)';
+        const showInvitation = () => document.getElementById('pagesContainer').style.transform = 'translateX(0%)';
 
         // Touch/Swipe Support
         // Directions Function
-        function openDirections() {
+        const openDirections = () => {
             const address = "HEAVEN BANQUET, TROPICAL NEW ERA, OPPOSITE KAMGAR HOSPITAL, AMBICA NAGAR, WAGLE INDUSTRIAL ESTATE, NEAR ZUDIO, THANE WEST, MAHARASHTRA 400604";
-            const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
-            window.open(googleMapsUrl, '_blank');
-        }
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`, '_blank');
+        };
 
         // Photo Popup Functions
-        function openPhotoPopup(imageSrc, name) {
+        const openPhotoPopup = (imageSrc, name) => {
             const popup = document.getElementById('photoPopup');
             const heartPopup = document.getElementById('heartPopup');
-            const popupImage = document.getElementById('popupImage');
-            const popupName = document.getElementById('popupName');
             
-            popupImage.src = imageSrc;
-            popupName.textContent = name;
+            document.getElementById('popupImage').src = imageSrc;
+            document.getElementById('popupName').textContent = name;
             
             popup.style.display = 'flex';
             heartPopup.style.animation = 'popupOpen 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards, heartFloat 4s ease-in-out infinite 0.8s';
-        }
+        };
 
-        function closePhotoPopup() {
-            const popup = document.getElementById('photoPopup');
-            popup.style.display = 'none';
-        }
+        const closePhotoPopup = () => document.getElementById('photoPopup').style.display = 'none';
 
         // Close popup when clicking outside
         document.getElementById('photoPopup').addEventListener('click', function(e) {
@@ -1247,21 +1184,15 @@
             }, 16000);
         }
 
-        // Create floating roses periodically
+        // Initialize floating animations
         setInterval(createFloatingHeart, 3000);
-
-        // Create floating sacred symbols periodically
         setInterval(createFloatingSymbol, 4000);
-
-        // Initial roses
-        for(let i = 0; i < 3; i++) {
+        
+        // Create initial elements
+        Array.from({length: 3}, (_, i) => {
             setTimeout(createFloatingHeart, i * 800);
-        }
-
-        // Initial sacred symbols
-        for(let i = 0; i < 3; i++) {
             setTimeout(createFloatingSymbol, i * 1000);
-        }
+        });
     </script>
 </body>
 </html>
