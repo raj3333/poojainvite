@@ -1027,34 +1027,6 @@
         }
 
         // Touch/Swipe Support
-        let startX = 0;
-        let currentX = 0;
-        let isDragging = false;
-
-        document.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        });
-
-        document.addEventListener('touchmove', function(e) {
-            if (!isDragging) return;
-            currentX = e.touches[0].clientX;
-        });
-
-        document.addEventListener('touchend', function(e) {
-            if (!isDragging) return;
-            isDragging = false;
-            
-            const diffX = startX - currentX;
-            if (Math.abs(diffX) > 50) {
-                if (diffX > 0) {
-                    showMap();
-                } else {
-                    showInvitation();
-                }
-            }
-        });
-
         // Directions Function
         function openDirections() {
             const address = "HEAVEN BANQUET, TROPICAL NEW ERA, OPPOSITE KAMGAR HOSPITAL, AMBICA NAGAR, WAGLE INDUSTRIAL ESTATE, NEAR ZUDIO, THANE WEST, MAHARASHTRA 400604";
