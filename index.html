@@ -10,7 +10,7 @@
     <meta property="og:url" content="https://raj3333.github.io/poojainvite/">
     <meta property="og:title" content="💕 Pooja & Akash - Engagement Invitation 💕">
     <meta property="og:description" content="Join us for our engagement celebration on November 15, 2025 at 4:00 PM at Heaven Banquet, Thane. Two hearts becoming one ✨">
-    <meta property="og:image" content="https://raj3333.github.io/poojainvite/pooja.jpg">
+    <meta property="og:image" content="https://raj3333.github.io/poojainvite/preview.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/jpeg">
@@ -21,7 +21,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="💕 Pooja & Akash - Engagement Invitation 💕">
     <meta name="twitter:description" content="Join us for our engagement celebration on November 15, 2025 at 4:00 PM at Heaven Banquet, Thane. Two hearts becoming one ✨">
-    <meta name="twitter:image" content="https://raj3333.github.io/poojainvite/pooja.jpg">
+    <meta name="twitter:image" content="https://raj3333.github.io/poojainvite/preview.jpg">
     
     <!-- WhatsApp specific -->
     <meta property="og:site_name" content="Engagement Invitation">
@@ -867,6 +867,43 @@
             text-shadow: 0 0 10px rgba(220, 20, 60, 0.4);
         }
 
+        .floating-symbols {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sacred-symbol {
+            position: absolute;
+            font-size: 24px;
+            animation: floatSymbol 12s linear infinite;
+            font-weight: bold;
+        }
+
+        .om-symbol {
+            color: rgba(255, 215, 0, 0.7);
+            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .swastika-symbol {
+            color: rgba(255, 140, 0, 0.7);
+            filter: drop-shadow(0 0 12px rgba(255, 140, 0, 0.8));
+            text-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
+        }
+
+        .ganesh-mantra {
+            color: rgba(255, 140, 0, 0.9);
+            filter: drop-shadow(0 0 15px rgba(255, 140, 0, 1));
+            text-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
         @keyframes float {
             0% {
                 transform: translateY(100vh) rotate(0deg);
@@ -874,6 +911,23 @@
             }
             100% {
                 transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatSymbol {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(1.2);
                 opacity: 0;
             }
         }
@@ -920,6 +974,7 @@
         <!-- Page 1: Invitation -->
         <div class="page invitation-container">
             <div class="floating-hearts" id="floating-hearts"></div>
+            <div class="floating-symbols" id="floating-symbols"></div>
             
             <div class="invitation-content">
                 <div class="couple-photos">
@@ -1100,12 +1155,47 @@
             }, 10000);
         }
 
+        // Floating Sacred Symbols Animation
+        function createFloatingSymbol() {
+            const symbols = ['ૐ', '卐', 'श्री गणेशाय नम:'];
+            const symbol = document.createElement('div');
+            symbol.className = 'sacred-symbol';
+            
+            const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.innerHTML = randomSymbol;
+            
+            if (randomSymbol === 'ૐ') {
+                symbol.classList.add('om-symbol');
+            } else if (randomSymbol === '卐') {
+                symbol.classList.add('swastika-symbol');
+            } else {
+                symbol.classList.add('ganesh-mantra');
+            }
+            
+            symbol.style.left = Math.random() * 100 + '%';
+            symbol.style.animationDuration = (Math.random() * 6 + 10) + 's';
+            symbol.style.animationDelay = Math.random() * 4 + 's';
+            document.getElementById('floating-symbols').appendChild(symbol);
+
+            setTimeout(() => {
+                symbol.remove();
+            }, 16000);
+        }
+
         // Create floating roses periodically
         setInterval(createFloatingHeart, 2000);
+
+        // Create floating sacred symbols periodically
+        setInterval(createFloatingSymbol, 4000);
 
         // Initial roses
         for(let i = 0; i < 4; i++) {
             setTimeout(createFloatingHeart, i * 600);
+        }
+
+        // Initial sacred symbols
+        for(let i = 0; i < 3; i++) {
+            setTimeout(createFloatingSymbol, i * 1500);
         }
     </script>
 </body>

@@ -329,6 +329,43 @@
             animation: float 8s linear infinite;
         }
 
+        .floating-symbols {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sacred-symbol {
+            position: absolute;
+            font-size: 26px;
+            animation: floatSymbol 14s linear infinite;
+            font-weight: bold;
+        }
+
+        .om-symbol {
+            color: rgba(255, 255, 255, 0.8);
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+        }
+
+        .swastika-symbol {
+            color: rgba(255, 193, 7, 0.8);
+            filter: drop-shadow(0 0 15px rgba(255, 193, 7, 0.9));
+            text-shadow: 0 0 20px rgba(255, 193, 7, 0.7);
+        }
+
+        .ganesh-mantra {
+            color: rgba(255, 140, 0, 0.9);
+            filter: drop-shadow(0 0 18px rgba(255, 140, 0, 1));
+            text-shadow: 0 0 25px rgba(255, 140, 0, 0.8);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
         @keyframes float {
             0% {
                 transform: translateY(100vh) rotate(0deg);
@@ -336,6 +373,23 @@
             }
             100% {
                 transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatSymbol {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.7);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(1.3);
                 opacity: 0;
             }
         }
@@ -382,6 +436,7 @@
         <!-- Page 1: Invitation -->
         <div class="page invitation-container">
             <div class="floating-petals" id="floating-petals"></div>
+            <div class="floating-symbols" id="floating-symbols"></div>
             
             <div class="invitation-content">
                 <div class="ganesh-symbol">🐘</div>
@@ -555,12 +610,47 @@
             }, 8000);
         }
 
+        // Floating Sacred Symbols Animation
+        function createFloatingSymbol() {
+            const symbols = ['ૐ', '卐', 'श्री गणेशाय नम:'];
+            const symbol = document.createElement('div');
+            symbol.className = 'sacred-symbol';
+            
+            const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.innerHTML = randomSymbol;
+            
+            if (randomSymbol === 'ૐ') {
+                symbol.classList.add('om-symbol');
+            } else if (randomSymbol === '卐') {
+                symbol.classList.add('swastika-symbol');
+            } else {
+                symbol.classList.add('ganesh-mantra');
+            }
+            
+            symbol.style.left = Math.random() * 100 + '%';
+            symbol.style.animationDuration = (Math.random() * 8 + 12) + 's';
+            symbol.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('floating-symbols').appendChild(symbol);
+
+            setTimeout(() => {
+                symbol.remove();
+            }, 20000);
+        }
+
         // Create floating petals periodically
         setInterval(createFloatingPetal, 3000);
+
+        // Create floating sacred symbols periodically
+        setInterval(createFloatingSymbol, 5000);
 
         // Initial petals
         for(let i = 0; i < 3; i++) {
             setTimeout(createFloatingPetal, i * 1000);
+        }
+
+        // Initial sacred symbols
+        for(let i = 0; i < 2; i++) {
+            setTimeout(createFloatingSymbol, i * 2000);
         }
     </script>
 </body>
