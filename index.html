@@ -1238,19 +1238,19 @@
         }
 
         // Create floating roses periodically
-        setInterval(createFloatingHeart, 2000);
+        setInterval(createFloatingHeart, 6000);
 
         // Create floating sacred symbols periodically
-        setInterval(createFloatingSymbol, 2500);
+        setInterval(createFloatingSymbol, 8000);
 
         // Initial roses
-        for(let i = 0; i < 4; i++) {
-            setTimeout(createFloatingHeart, i * 600);
+        for(let i = 0; i < 2; i++) {
+            setTimeout(createFloatingHeart, i * 1200);
         }
 
         // Initial sacred symbols
-        for(let i = 0; i < 5; i++) {
-            setTimeout(createFloatingSymbol, i * 800);
+        for(let i = 0; i < 2; i++) {
+            setTimeout(createFloatingSymbol, i * 1500);
         }
     </script>
 </body>
