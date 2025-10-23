@@ -882,27 +882,27 @@
 
         .sacred-symbol {
             position: absolute;
-            font-size: 24px;
+            font-size: 28px;
             animation: floatSymbol 12s linear infinite;
             font-weight: bold;
         }
 
         .om-symbol {
-            color: rgba(255, 215, 0, 0.7);
-            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            color: rgba(255, 215, 0, 1);
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.8));
+            text-shadow: 0 0 25px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 215, 0, 0.6);
         }
 
         .swastika-symbol {
-            color: rgba(255, 140, 0, 0.7);
-            filter: drop-shadow(0 0 12px rgba(255, 140, 0, 0.8));
-            text-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
+            color: rgba(255, 140, 0, 1);
+            filter: drop-shadow(0 0 20px rgba(255, 140, 0, 1)) drop-shadow(0 0 40px rgba(255, 140, 0, 0.8));
+            text-shadow: 0 0 25px rgba(255, 140, 0, 1), 0 0 50px rgba(255, 140, 0, 0.6);
         }
 
         .ganesh-mantra {
-            color: rgba(255, 140, 0, 0.9);
-            filter: drop-shadow(0 0 15px rgba(255, 140, 0, 1));
-            text-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+            color: rgba(255, 140, 0, 1);
+            filter: drop-shadow(0 0 25px rgba(255, 140, 0, 1)) drop-shadow(0 0 50px rgba(255, 140, 0, 0.8));
+            text-shadow: 0 0 30px rgba(255, 140, 0, 1), 0 0 60px rgba(255, 140, 0, 0.7);
             font-size: 16px;
             font-weight: 600;
         }
@@ -920,18 +920,12 @@
 
         @keyframes floatSymbol {
             0% {
-                transform: translateY(100vh) rotate(0deg) scale(0.8);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
+                transform: translateY(100vh) rotate(0deg);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100px) rotate(360deg) scale(1.2);
-                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 1;
             }
         }
 
@@ -1150,7 +1144,6 @@
             heart.innerHTML = roses[Math.floor(Math.random() * roses.length)];
             heart.style.left = Math.random() * 100 + '%';
             heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
-            heart.style.animationDelay = Math.random() * 3 + 's';
             document.getElementById('floating-hearts').appendChild(heart);
 
             setTimeout(() => {
@@ -1177,7 +1170,6 @@
             
             symbol.style.left = Math.random() * 100 + '%';
             symbol.style.animationDuration = (Math.random() * 6 + 10) + 's';
-            symbol.style.animationDelay = Math.random() * 4 + 's';
             document.getElementById('floating-symbols').appendChild(symbol);
 
             setTimeout(() => {
@@ -1189,7 +1181,7 @@
         setInterval(createFloatingHeart, 2000);
 
         // Create floating sacred symbols periodically
-        setInterval(createFloatingSymbol, 4000);
+        setInterval(createFloatingSymbol, 2500);
 
         // Initial roses
         for(let i = 0; i < 4; i++) {
@@ -1197,8 +1189,8 @@
         }
 
         // Initial sacred symbols
-        for(let i = 0; i < 3; i++) {
-            setTimeout(createFloatingSymbol, i * 1500);
+        for(let i = 0; i < 5; i++) {
+            setTimeout(createFloatingSymbol, i * 800);
         }
     </script>
 </body>
