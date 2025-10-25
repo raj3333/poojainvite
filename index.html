@@ -998,6 +998,11 @@
         <div class="close-popup" onclick="closePhotoPopup()">×</div>
     </div>
 
+    <!-- Background Music -->
+    <audio id="backgroundMusic" autoplay loop muted>
+        <source src="background.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
         // Countdown Timer
         const updateCountdown = () => {
@@ -1111,6 +1116,26 @@
         Array.from({length: 3}, (_, i) => {
             setTimeout(createFloatingHeart, i * 800);
             setTimeout(createFloatingSymbol, i * 1000);
+        });
+
+        // Background Music - starts on first user interaction
+        const music = document.getElementById('backgroundMusic');
+        let musicStarted = false;
+        
+        const startMusic = () => {
+            if (!musicStarted) {
+                music.muted = false;
+                music.volume = 0.3;
+                music.play().then(() => {
+                    musicStarted = true;
+                    console.log('Music started successfully');
+                }).catch(e => console.log('Audio play failed:', e));
+            }
+        };
+        
+        // Start music on first user interaction
+        ['click', 'touchstart', 'keydown'].forEach(event => {
+            document.addEventListener(event, startMusic, { once: true });
         });
     </script>
 </body>
