@@ -885,6 +885,32 @@
             animation: devotionalGlow 3s ease-in-out infinite;
         }
 
+        .mute-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .mute-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
         @media (max-width: 768px) {
             .invitation-content { padding: 5px 0; }
             .couple-photos { margin-bottom: 15px; }
@@ -912,6 +938,7 @@
         <div class="page invitation-container">
             <div class="floating-hearts" id="floating-hearts"></div>
             <div class="floating-symbols" id="floating-symbols"></div>
+            <button class="mute-btn" id="muteBtn" onclick="toggleMute()">🔊</button>
             
             <div class="invitation-content">
                 <div class="couple-photos">
@@ -1118,6 +1145,7 @@
 
         // Background Music - starts on first user interaction
         const music = document.getElementById('backgroundMusic');
+        const muteBtn = document.getElementById('muteBtn');
         let musicStarted = false;
         
         const startMusic = () => {
@@ -1129,6 +1157,14 @@
                     console.log('Music started successfully');
                 }).catch(e => console.log('Audio play failed:', e));
             }
+        };
+        
+        const toggleMute = () => {
+            if (!musicStarted) {
+                startMusic();
+            }
+            music.muted = !music.muted;
+            muteBtn.textContent = music.muted ? '🔇' : '🔊';
         };
         
         // Start music on first user interaction
