@@ -1159,13 +1159,26 @@
             }
         };
         
+        const updateMuteButton = () => {
+            if (!musicStarted) {
+                muteBtn.textContent = '▶️'; // Play icon when music not started
+            } else {
+                muteBtn.textContent = music.muted ? '🔇' : '🔊'; // Mute/unmute when playing
+            }
+        };
+        
         const toggleMute = () => {
             if (!musicStarted) {
                 startMusic();
+                setTimeout(updateMuteButton, 100); // Update after music starts
+            } else {
+                music.muted = !music.muted;
+                updateMuteButton();
             }
-            music.muted = !music.muted;
-            muteBtn.textContent = music.muted ? '🔇' : '🔊';
         };
+        
+        // Initialize button state
+        updateMuteButton();
         
         // Start music on first user interaction
         ['click', 'touchstart', 'keydown'].forEach(event => {
